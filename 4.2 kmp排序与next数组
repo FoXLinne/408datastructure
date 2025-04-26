@@ -1,0 +1,11 @@
+// 通过 next 数组求 nextval 数组
+
+nextval[1] = 0;
+for(j = 2; j <= T.length; j++){
+    if(T.ch[j] == T.ch[next[j]]){
+        nextval[j] = nextval[next[j]];
+    }
+    else{
+        nextval[j] = next[j];
+    }
+}
