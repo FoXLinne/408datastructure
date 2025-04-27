@@ -18,6 +18,13 @@ void PreOrder(BiTree T){
 //先序遍历，在第一次路过该结点时访问结点
 //每个节点都会被路过三次
 
+void InOrder(BiTree T){
+    if(T != NULL){
+        InOrder(T->lchild);
+        visit(T);
+        InOrder(T->rchild);
+    }
+}
 //1. 若二叉树为空，则什么都不做
 //2. 若二叉树非空
     //1. 先序遍历左子树
@@ -26,6 +33,13 @@ void PreOrder(BiTree T){
 //中序遍历，在第二次路过该结点时访问结点
 //每个节点都会被路过三次
 
+void PostOder(BiTree T){
+    if(T != NULL){
+        PostOder(T->lchild);
+        PostOder(T->rchild);
+        visit(T);
+    }
+}
 //1. 若二叉树为空，则什么都不做
 //2. 若二叉树非空
     //1. 先序遍历左子树
