@@ -15,8 +15,8 @@
     //找父结点方便，找孩子结点不方便；
     //适用于并查集；
 
-
-//2. 孩子表示法
+//使用链式存储各个结点
+//1. 孩子表示法
     struct CTNode{
         int child;
         struct CTNode *next;
@@ -33,7 +33,7 @@
     //找孩子结点方便，找父结点不方便；
     //适用于服务流程树；
 
-//3. 孩子兄弟表示法
+//2. 孩子兄弟表示法
     typedef struct CSNode{
         ElemType data;
         struct CSNode *firstChild; *nextSibling;
