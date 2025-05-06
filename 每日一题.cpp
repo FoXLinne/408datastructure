@@ -8,6 +8,7 @@
 
 #include <cstdio>
 
+
 void Reverse(SqList &L, int to, int from){
     while(to < from){
         int temp = L[to];
@@ -33,8 +34,10 @@ void Exchange(SqList &L, int p, int n){
 // 直到 p 遍历完链表，q 指向的就是最小值节点。
 // 使用 pre 指针来记录 q 的前一个节点，方便删除操作。
 
+typedef struct LNode()
 
-void DeleteMinNode(LinkList &L){
+
+LinkList DeleteMinNode(LinkList &L){
     if(L->next == NULL){
         return; // 链表为空
     }
@@ -44,14 +47,14 @@ void DeleteMinNode(LinkList &L){
     LNode *q = p; // q 指向最小值节点
     while(p != NULL){
         if(p->data < q->data){
-            q = p;
-            minpre = pre;
+            q = p; // 更新最小节点 q 的指针
+            minpre = pre; // 使用 minpre 记录下来前驱节点
         }
         p = p->next;
-        minpre = minpre->next;
+        pre = pre->next;
+        // 向后移动指针
     }
-    pre->next = q->next;
+    minpre->next = q->next; // 改变前驱节点的 next 指针指向
     free(p);
+    return L;
 }
-
-Hello!
