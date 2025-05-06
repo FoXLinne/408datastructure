@@ -53,3 +53,5 @@ void DeleteMinNode(LinkList &L){
     pre->next = q->next;
     free(p);
 }
+
+Hello
