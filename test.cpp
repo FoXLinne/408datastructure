@@ -1,46 +1,27 @@
-void Delete_x(LinkList &L, ElemType x){
-    LNode *p = L->next;
-    LNode *pre = L;
-    LNode *q;
+#include <cstdio>
+#define MAXSIZE 100 // 定义最大长度
 
-    while(L->next != NULL){
-        if(p.data == x){
-            q = p;
-            pre->next = p->next;
-            p = p->next;
-            free(q);
-        }
-        else{
-            pre = pre->next;
-            p = p->next;
-        }
+struct SqList{
+    int data[MAXSIZE]; // 存储空间的基址
+    int length; // 当前长度
+};
+
+void Reverse(SqList &L, int from, int to){
+    if(from < 0 || to > L.length || from > to){
+        return;
+    }
+    while(from < to){
+        int temp = L.data[from];
+        L.data[from] = L.data[to];
+        L.data[to] = temp;
+        from++;
+        to--;
     }
 }
 
-bool Merge(SqList A, SqList B, SqList &C){
-    if(C.length < A.length + B.length){
-        return false;
-    }
-
-    int i = 0, j = 0, k = 0;
-    while(i < A.length && j < B.length){
-        if(A.data[i] > B.data[j]){
-            C.data[k] = B.data[j];
-            j++;
-            k++;
-        }
-        else{
-            C.data[k] = A.data[i];
-            i++;
-            k++;
-        }
-    }
-    while(i < A.length){
-        C.data[k++] = A.data[i++];
-    }
-    while(j < B.length){
-        C.data[k++] = B.data[j++]
-    }
-    C.length = k;
-    return true;
+void Exchange(SqList &L, int n, int m){
+    Reverse(L, 0, n-1); // 先将前 n 个元素翻转
+    Reverse(L, n, m-1); // 再将后 m 个元素翻转
+    Reverse(L, 0, m-1); // 最后将整个表翻转
+    // 这样就实现了前 n 个元素和后 m 个元素的交换
 }
