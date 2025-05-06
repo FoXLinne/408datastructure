@@ -7,7 +7,13 @@
 // 先 Reverse 前 p 个元素，再 Reverse 后 n - p 个元素，最后 Reverse 整个数组。
 
 #include <cstdio>
+#include <cstdlib>
+#define MAXSIZE 100
 
+typedef struct SqList {
+    int data[MAXSIZE];
+    int length;
+}SqList;
 
 void Reverse(SqList &L, int to, int from){
     while(to < from){
@@ -34,13 +40,17 @@ void Exchange(SqList &L, int p, int n){
 // 直到 p 遍历完链表，q 指向的就是最小值节点。
 // 使用 pre 指针来记录 q 的前一个节点，方便删除操作。
 
-typedef struct LNode()
+typedef struct LNode {
+    int data;
+    struct LNode *next;
 
+}LNode, *LinkList;
 
 LinkList DeleteMinNode(LinkList &L){
     if(L->next == NULL){
-        return; // 链表为空
+        return false; // 链表为空
     }
+    L = (LNode *) malloc(sizeof(LNode));
     LNode *p = L->next; // p 指向第一个节点
     LNode *pre = L; // pre 指向 q 的前一个节点
     LNode *minpre = pre;
