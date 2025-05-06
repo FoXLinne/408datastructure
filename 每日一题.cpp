@@ -54,4 +54,4 @@ void DeleteMinNode(LinkList &L){
     free(p);
 }
 
-Hello
+Hello!
