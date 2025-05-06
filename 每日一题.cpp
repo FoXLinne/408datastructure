@@ -23,3 +23,33 @@ void Exchange(SqList &L, int p, int n){
     Reverse(L, p, n-1);
     Reverse(L, 0, n-1);
 }
+
+// 2025.5.7
+// 试编写带头结点的单链表L中删除一个最小值节点的高效算法（最小值节点唯一）
+// 第一步，找最小值
+// 第二步，删掉最小值
+// 使用 p 指针遍历，使用 q 指针标记遍历到的节点中的最小值。
+// 具体表现为，将 p 当前位置的值与 q 的值进行比较，若 p 的值小于 q 的值，则将 q 指向 p。
+// 直到 p 遍历完链表，q 指向的就是最小值节点。
+// 使用 pre 指针来记录 q 的前一个节点，方便删除操作。
+
+
+void DeleteMinNode(LinkList &L){
+    if(L->next == NULL){
+        return; // 链表为空
+    }
+    LNode *p = L->next; // p 指向第一个节点
+    LNode *pre = L; // pre 指向 q 的前一个节点
+    LNode *minpre = pre;
+    LNode *q = p; // q 指向最小值节点
+    while(p != NULL){
+        if(p->data < q->data){
+            q = p;
+            minpre = pre;
+        }
+        p = p->next;
+        minpre = minpre->next;
+    }
+    pre->next = q->next;
+    free(p);
+}
