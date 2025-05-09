@@ -17,9 +17,9 @@ typedef struct SqList {
 
 void Reverse(SqList &L, int to, int from){
     while(to < from){
-        int temp = L[to];
-        L[to] = L[from];
-        L[from] = temp;
+        int temp = L.data[to];
+        L.data[to] = L.data[from];
+        L.data[from] = temp;
         to++;
         from--;
     }
@@ -68,3 +68,21 @@ LinkList DeleteMinNode(LinkList &L){
     free(p);
     return L;
 }
+
+// 2025.5.7 (2)
+// 使用头插法建立单链表
+LinkList insert_link_list(LinkList &L,int x) {
+    L = (LNode *) malloc(sizeof(LNode));
+    L->next = NULL;
+    scanf("%d", x);
+    while (x != -1){
+        LNode *p = (LNode *) malloc(sizeof(LNode));
+        p->data = x;
+        p->next = L->next;
+        L->next = p;
+    }
+    return L;
+}
+
+// 2025.5.7 (3)
+// 使用尾插法建立单链表
