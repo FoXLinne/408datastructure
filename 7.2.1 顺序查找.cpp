@@ -8,6 +8,8 @@
 
 // 顺序查找又叫线性查找，通常用于线性表
 
+typedef int ElemType;
+
 typedef struct {
     ElemType *elem;
     int TableLen;
