@@ -71,6 +71,7 @@ LinkList DeleteMinNode(LinkList &L){
 
 // 2025.5.7 (2)
 // 使用头插法建立单链表
+// 输入的次序和生成链表节点的次序是相反的
 LinkList insert_link_list(LinkList &L,int x) {
     L = (LNode *) malloc(sizeof(LNode));
     L->next = NULL;
@@ -84,5 +85,56 @@ LinkList insert_link_list(LinkList &L,int x) {
     return L;
 }
 
-// 2025.5.7 (3)
+// 2025.5.10 (1)
 // 使用尾插法建立单链表
+// 输入的次序和生成链表节点的次序是相同的
+// 操作表尾，设置尾指针 r，使 r 始终指向表尾
+
+LinkList InsertLinkList_tail(LinkList &L, int x) {
+    L = (LinkList) malloc(sizeof(LNode)); // 创建头节点
+    LNode *s;
+    LNode *r = L;
+    scanf("%d", &x);
+    while (x != -1) {   // 输入 -1 后不再创建节点，程序结束
+        s = (LNode*) malloc(sizeof(LNode)); // 创建 s 节点
+        s->data = x;
+        r->next = s;
+        r = s;
+    }
+    r->next = NULL; // 链表创建结束后，最后一个节点的 next 指向 NULL
+    return L;
+}
+
+// 2025.5.10 (2)
+// 给定一个带头结点的单链表 L，将其就地逆置（空间复杂度为O(1)）
+// 方法 1 使用头插法，将从头节点后开始的第一个节点到最后一个节点依次接入头节点后，完成逆置
+// 使用指针 p 指向开始操作的节点，指针 rear 为其后继节点
+LinkList ReverseLinkList(LinkList &L) {
+    LNode *p = L->next;
+    LNode *rear;
+    L->next = NULL;
+    while (p != NULL) {
+        rear = p->next;
+        p->next = L->next;
+        L->next = p;
+        p = rear;
+    }
+    return L;
+}
+
+// 方法 2 直接反转 next 指针的方向（三指针法）
+// 使用指针 p 指向开始操作的节点，pre 为其前驱节点，rear 为其后继节点
+LinkList ReverseLinkList_tri(LinkList &L) {
+    LNode *pre = L->next;
+    LNode *p = pre->next;
+    LNode *rear = p->next;
+    pre->next = NULL;
+    while (p != NULL) {
+        p->next = pre;
+        pre = p;
+        p = rear;
+        rear = rear->next;
+    }
+    L->next = p;
+    return L;
+}
