@@ -138,3 +138,4 @@ LinkList ReverseLinkList_tri(LinkList &L) {
     L->next = p;
     return L;
 }
+
